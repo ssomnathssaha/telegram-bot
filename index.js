@@ -1,9 +1,10 @@
 const Botgram = require("botgram");
 const https = require("https");
-const request = require('request');
+const request = require("request");
+const util = require("util");
 const TELEGRAM_BOT_TOKEN = "1443420444:AAGUCJfXlbc5nDVpsCdEOZhOVoBh8lPQhM4";
 
-//const { TELEGRAM_BOT_TOKEN } = process.env;
+const { TELEGRAM_BOT_TOKEN } = process.env;
 
 if (!TELEGRAM_BOT_TOKEN) {
   console.error(
@@ -14,7 +15,29 @@ if (!TELEGRAM_BOT_TOKEN) {
 
 const bot = new Botgram(TELEGRAM_BOT_TOKEN);
 
-bot.text("Successfully received");
+
+bot.ready(function () {
+  console.log("I'm user %s (%s).", bot.get("id"), bot.get("firstname"));
+});
+
+bot.synced(function () {
+  console.log("\nTalk to me: %s", bot.link());
+  console.log("Waiting for messages...");
+});
+
+function handler(msg, reply, next) {
+  var type = msg.type ? msg.type : "unknown message";
+  type = msg.edited ? ("Edited " + type) : capitalize(type);
+  console.log("\n%s at %s %s (%s):", type, msg.chat.type, msg.chat.id, msg.chat.name);
+  console.log(util.inspect(msg, {colors: true, depth: null}));
+}
+
+bot.all(handler);
+bot.edited.all(handler);
+
+function capitalize(s) {
+  return s[0].toUpperCase() + s.slice(1);
+}
 
 /*
 function onMessage(msg, reply) {
