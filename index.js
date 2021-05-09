@@ -14,6 +14,9 @@ if (!TELEGRAM_BOT_TOKEN) {
 
 const bot = new Botgram(TELEGRAM_BOT_TOKEN);
 
+bot.text("Successfully received");
+
+/*
 function onMessage(msg, reply) {
   
   const options = {
@@ -49,7 +52,7 @@ https
 
 bot.text(onMessage);
 
-/*
+
 function onMessage(msg, reply) {
   figlet(msg.text, (err, data) => {
     if (err) {
