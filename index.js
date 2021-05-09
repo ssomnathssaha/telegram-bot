@@ -3,7 +3,7 @@ const https = require("https");
 const request = require('request');
 const TELEGRAM_BOT_TOKEN = "1443420444:AAGUCJfXlbc5nDVpsCdEOZhOVoBh8lPQhM4";
 
-const { TELEGRAM_BOT_TOKEN } = process.env;
+//const { TELEGRAM_BOT_TOKEN } = process.env;
 
 if (!TELEGRAM_BOT_TOKEN) {
   console.error(
