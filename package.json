@@ -1,5 +1,5 @@
 {
-  "name": "atg-bot",
+  "name": "telegram-bot",
   "version": "1.0.0",
   "description": "Telegram Bot",
   "main": "index.js",
