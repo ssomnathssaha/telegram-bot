@@ -4,40 +4,16 @@ const request = require("request");
 const util = require("util");
 const TELEGRAM_BOT_TOKEN = "1443420444:AAGUCJfXlbc5nDVpsCdEOZhOVoBh8lPQhM4";
 
-const { TELEGRAM_BOT_TOKEN } = process.env;
-
-if (!TELEGRAM_BOT_TOKEN) {
-  console.error(
-    "Seems like you forgot to pass Telegram Bot Token. I can not proceed..."
-  );
-  process.exit(1);
-}
-
 const bot = new Botgram(TELEGRAM_BOT_TOKEN);
 
-
-bot.ready(function () {
-  console.log("I'm user %s (%s).", bot.get("id"), bot.get("firstname"));
+bot.message(function (msg, reply, next) {
+  reply.text("You said:");
+  try {
+    reply.message(msg);
+  } catch (err) {
+    reply.text("Couldn't resend that.");
+  }
 });
-
-bot.synced(function () {
-  console.log("\nTalk to me: %s", bot.link());
-  console.log("Waiting for messages...");
-});
-
-function handler(msg, reply, next) {
-  var type = msg.type ? msg.type : "unknown message";
-  type = msg.edited ? ("Edited " + type) : capitalize(type);
-  console.log("\n%s at %s %s (%s):", type, msg.chat.type, msg.chat.id, msg.chat.name);
-  console.log(util.inspect(msg, {colors: true, depth: null}));
-}
-
-bot.all(handler);
-bot.edited.all(handler);
-
-function capitalize(s) {
-  return s[0].toUpperCase() + s.slice(1);
-}
 
 /*
 function onMessage(msg, reply) {
