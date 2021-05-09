@@ -1,7 +1,7 @@
 {
   "name": "atg-bot",
   "version": "1.0.0",
-  "description": "Telegram Bot for ascii-text-generator",
+  "description": "Telegram Bot",
   "main": "index.js",
   "dependencies": {
     "botgram": "^2.2.0",
@@ -21,14 +21,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node index.js"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/yurist38/atg-bot.git"
-  },
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/yurist38/atg-bot/issues"
-  },
-  "homepage": "https://github.com/yurist38/atg-bot#readme"
+  "engines": {
+    "node": "14.x"
+  }
 }
